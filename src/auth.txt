@@ -1,0 +1,4 @@
+rajavicky007_db_user
+KtE8HKfy9YoAvoyL
+
+mongodb+srv://rajavicky007_db_user:KtE8HKfy9YoAvoyL@cluster0.g1dgqyk.mongodb.net/
