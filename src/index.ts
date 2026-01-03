@@ -5,6 +5,13 @@ import cookieParser from 'cookie-parser';
 import { register, login, getProfile, updateProfile, deleteUser } from './controllers/userController';
 import { authenticate } from './middleware/auth';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
+// Now you can access them via process.env
+const port = process.env.PORT || 3000;
+const mongoUri = process.env.MONGO_URI as string;
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -19,11 +26,9 @@ app.get('/user/profile', authenticate, getProfile);
 app.put('/user/profile', authenticate, updateProfile);
 app.delete('/user/profile', authenticate, deleteUser);
 
-const MONGO_URI = 'mongodb+srv://rajavicky007_db_user:KtE8HKfy9YoAvoyL@cluster0.g1dgqyk.mongodb.net/';
-
-mongoose.connect(MONGO_URI)
+mongoose.connect(mongoUri)
     .then(() => {
         console.log('Connected to MongoDB');
-        app.listen(3000, () => console.log('Server running on port 3000'));
+        app.listen(port, () => console.log(`Server running on port ${port}`));
     })
     .catch(err => console.error('DB Connection Error:', err));
